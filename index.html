@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#FDF8F3">
+  <title>Happy Birthday 🎂</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     INTRO SCREENS
+     ============================================================ -->
+
+<!-- STEP 1 · NAME INPUT -->
+<div id="screen-name" class="screen bg-intro">
+
+  <!-- Name input card -->
+  <div id="name-card" class="glass-card fade-up">
+    <p class="overline">A little something for you</p>
+    <h2 style="margin-bottom:0.5rem">Before we begin…</h2>
+    <p class="subtitle" style="margin-top:0.5rem">What should I call you?</p>
+    <input
+      id="name-input"
+      type="text"
+      class="elegant-input"
+      placeholder="Your name"
+      autocomplete="off"
+      maxlength="40"
+    >
+    <button id="name-btn" class="btn-primary">
+      Continue &nbsp;→
+    </button>
+  </div>
+
+  <!-- Greeting after name entry -->
+  <div id="name-greeting" class="glass-card fade-up hidden" style="text-align:center">
+    <p style="font-size:3rem;margin-bottom:0.5rem">🤍</p>
+    <h2>Hi, <span class="greet-name"></span></h2>
+    <p class="subtitle" style="margin-top:0.5rem">Something special is waiting for you…</p>
+  </div>
+
+</div>
+
+
+<!-- STEP 2 · AGE INPUT -->
+<div id="screen-age" class="screen bg-intro hidden">
+  <div class="glass-card fade-up">
+    <p class="overline">One more thing</p>
+    <h2 style="margin-bottom:0.5rem">How old are we celebrating today? 🎂</h2>
+    <p class="subtitle" style="margin-top:0.5rem">Enter your age and we'll make it special.</p>
+    <input
+      id="age-input"
+      type="number"
+      class="elegant-input"
+      placeholder="e.g. 21"
+      min="1"
+      max="120"
+    >
+    <button id="age-btn" class="btn-primary">
+      Continue &nbsp;→
+    </button>
+  </div>
+</div>
+
+
+<!-- STEP 3 · PASSWORD -->
+<div id="screen-password" class="screen bg-password hidden">
+  <div class="glass-card fade-up">
+    <p style="font-size:2.5rem;margin-bottom:1rem">🔮</p>
+    <p class="overline">Secret code required</p>
+    <h2 style="margin-bottom:0.5rem">A little surprise has been prepared for you.</h2>
+    <p class="subtitle" style="margin-top:0.5rem">Enter the secret code to continue.</p>
+    <input
+      id="pwd-input"
+      type="password"
+      class="elegant-input"
+      placeholder="••••••"
+      maxlength="20"
+    >
+    <p id="pwd-error" class="error-msg"></p>
+    <button id="pwd-btn" class="btn-primary">
+      Open &nbsp;✨
+    </button>
+  </div>
+</div>
+
+
+<!-- CELEBRATION SCREEN -->
+<div id="screen-celebration" class="screen bg-celebration hidden">
+  <canvas id="celebration-canvas" class="celebration-canvas"></canvas>
+  <div class="fade-up" style="text-align:center;position:relative;z-index:10;width:100%">
+    <p class="tap-hint">Tap each balloon to pop it! 🎈</p>
+    <div id="balloons-container" class="balloons-container"></div>
+  </div>
+</div>
+
+<!-- Petal curtain overlay (shared, always present) -->
+<div id="petal-curtain" class="petal-curtain"></div>
+
+
+<!-- ============================================================
+     MAIN WEBSITE
+     ============================================================ -->
+<div id="main-website">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-sparkles"></div>
+    <div class="hero-content">
+      <div class="hero-badge fade-up delay-1">✨ A birthday gift for you</div>
+      <h1 class="hero-title fade-up delay-2">
+        Happy Birthday,<br><span data-name>Guest</span>!
+      </h1>
+      <p id="hero-subtitle" class="hero-subtitle fade-up delay-3"></p>
+      <div class="scroll-cue fade-up delay-4">
+        <span>Scroll to begin</span>
+        <span class="scroll-arrow">↓</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- GALLERY -->
+  <section id="section-gallery">
+    <div class="gallery-inner">
+      <div class="reveal">
+        <p class="section-label">memory lane</p>
+        <h2 class="section-title">A little scrapbook, just for you.</h2>
+        <p class="section-body">Every photo a moment. Every moment a reason to smile.</p>
+      </div>
+      <div id="polaroid-grid" class="polaroid-grid"></div>
+    </div>
+  </section>
+
+
+  <!-- LETTER -->
+  <section id="section-letter" class="section">
+    <div class="reveal">
+      <p class="section-label">from the heart</p>
+      <h2 class="section-title">A letter, just for you.</h2>
+      <p class="section-body">Some things are better said with a little more care.</p>
+    </div>
+    <div class="reveal envelope-wrap" style="margin-top:2.5rem">
+      <div class="envelope">
+        <!-- Envelope SVG -->
+        <svg viewBox="0 0 220 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Body -->
+          <rect x="4" y="40" width="212" height="116" rx="12" fill="#F8EDF5" stroke="#E8C4D8" stroke-width="1.5"/>
+          <!-- Flap shadow -->
+          <path d="M4 52 L110 100 L216 52" stroke="#E8C4D8" stroke-width="1" fill="none"/>
+          <!-- Flap -->
+          <path d="M4 40 L110 92 L216 40 Q216 28 204 28 L16 28 Q4 28 4 40Z" fill="#F2D8E8" stroke="#E8C4D8" stroke-width="1.5"/>
+          <!-- Bottom triangle -->
+          <path d="M4 156 L90 100 M216 156 L130 100" stroke="#E8C4D8" stroke-width="1"/>
+          <!-- Wax seal -->
+          <circle cx="110" cy="110" r="16" fill="#D4849B" opacity="0.85"/>
+          <text x="110" y="115" text-anchor="middle" font-size="14" fill="white" font-family="serif">♡</text>
+        </svg>
+      </div>
+      <p class="envelope-label">Tap to open 🤍</p>
+    </div>
+  </section>
+
+
+  <!-- GAMES -->
+  <section id="section-games">
+    <div class="games-inner">
+      <div class="reveal">
+        <p class="section-label">little games</p>
+        <h2 class="section-title">A few gifts to unwrap.</h2>
+        <p class="section-body">Because you deserve a little fun today.</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="games-tabs reveal">
+        <button class="game-tab" data-game="quiz">🔨 Cake Birthday</button>
+        <button class="game-tab active" data-game="memory">🃏 Memory</button>
+        <button class="game-tab" data-game="puzzle">🎀 Scratch Card</button>
+      </div>
+
+      <!-- Memory Game Panel -->
+      <div id="panel-memory" class="game-panel active reveal">
+        <p class="section-body" style="margin-bottom:0.1rem">Match all the pairs to unlock a hidden message!</p>
+        <div id="memory-grid" class="memory-grid"></div>
+        <p id="memory-status" class="game-status">0 / 8 matched</p>
+        <div id="memory-unlock" class="game-unlock-msg"></div>
+      </div>
+
+      <!-- Scratch Card Panel (Ganti Isi Grid Lama) -->
+      <div id="panel-puzzle" class="game-panel reveal">
+        <p class="section-body" style="margin-bottom:0.5rem">Gosok layar di bawah pakai jarimu untuk melihat hadiah rahasia dari aku! ✨</p>
+        <div class="scratch-container" style="position: relative; width: 300px; height: 150px; margin: 20px auto; background: #fff; border-radius: 16px; box-shadow: inset 0 0 10px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; padding: 15px; text-align: center;">
+          <!-- Teks hadiah di belakang -->
+          <div id="scratch-reward" style="font-family: var(--font-hand); color: var(--text-dark); font-weight: bold; font-size: 1.15rem; z-index: 1; line-height: 1.5;"></div>
+          <!-- Lapisan abu-abu yang bisa digosok -->
+          <canvas id="scratch-canvas" width="300" height="150" style="position: absolute; top: 0; left: 0; cursor: crosshair; z-index: 2; border-radius: 16px;"></canvas>
+        </div>
+        <div id="puzzle-unlock" class="game-unlock-msg" style="margin-top:1rem"></div>
+      </div>
+
+      <!-- Panel Game 3: Decorate The Cake (Dinamis & Estetik) -->
+      <div id="panel-quiz" class="game-panel reveal">
+        <p class="section-body" style="margin-bottom:1rem; text-align:center;">Hias kue ulang tahun digitalnya! Klik topping & lilin sesukamu ✨</p>
+        
+        <div class="cake-area" style="position: relative; width: 300px; height: 300px; margin: 0 auto 20px auto; background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.6)); border-radius: 24px; border: 2px solid var(--lavender); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 25px; overflow: hidden; box-shadow: 0 10px 30px rgba(180,130,150,0.15);">
+          <div id="cake-toppings-zone" style="position: absolute; inset: 0; pointer-events: none; z-index: 5;"></div>
+          <div id="base-cake-wrapper" style="font-size: 8.5rem; z-index: 2; line-height: 1; filter: drop-shadow(0 10px 20px rgba(180,130,150,0.25)); transition: transform 0.3s var(--ease-soft);">🎂</div>
+          <div id="cake-celebration-msg" class="game-unlock-msg"></div>
+        </div> <div class="cake-menu" style="max-width: 400px; margin: 0 auto; background: white; padding: 18px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+          
+          <p style="font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 8px;">🍬 Topping & Sparkles:</p>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 15px;">
+            <button class="cake-opt-btn" onclick="addTopping('🍓')">🍓 Stroberi</button>
+            <button class="cake-opt-btn" onclick="addTopping('🍫')">🍫 Cokelat</button>
+            <button class="cake-opt-btn" onclick="addTopping('✨')">✨ Sparkle</button>
+            <button class="cake-opt-btn" onclick="addTopping('🎈')">🎈 Balon</button>
+          </div>
+
+          <p style="font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 8px;">🕯️ Pilihan Lilin:</p>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 18px;">
+            <button class="cake-opt-btn" onclick="addTopping('🕯️')">🕯️ Klasik</button>
+            <button class="cake-opt-btn" onclick="addTopping('⭐')">⭐ Bintang</button>
+            <button class="cake-opt-btn" onclick="resetCakeAndToppings()" style="background: #F2C4C4; color: #7A5F6A; border-color: #E8A5A5;">🔄 Reset</button>
+          </div>
+
+          <button id="burn-candle-btn" class="btn-primary" onclick="triggerCakeMagic()" style="width: 100%; margin-top: 0; padding: 12px; font-size: 0.95rem; border-radius: 50px;">Nyalakan Lilin & Tiup! 🕯️🔥</button>
+        </div>
+
+      </div>
+
+  <!-- SURPRISE GIFT -->
+  <section id="section-gift" class="section">
+    <div class="reveal">
+      <p class="section-label">one last thing</p>
+      <h2 class="section-title">There's one more surprise.</h2>
+      <p class="section-body">Go on — tap the box.</p>
+    </div>
+    <div class="reveal gift-box-wrap">
+      <div id="gift-box" class="gift-box">
+        <!-- Gift Box SVG -->
+        <svg viewBox="0 0 160 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Box body -->
+          <rect x="15" y="75" width="130" height="95" rx="8" fill="#F2C4C4" stroke="#E8A5A5" stroke-width="2"/>
+          <!-- Lid -->
+          <rect x="10" y="55" width="140" height="28" rx="7" fill="#E8A5A5" stroke="#D4849B" stroke-width="2"/>
+          <!-- Vertical ribbon on body -->
+          <rect x="72" y="75" width="16" height="95" rx="4" fill="#D4849B" opacity="0.7"/>
+          <!-- Horizontal ribbon on lid -->
+          <rect x="10" y="62" width="140" height="14" rx="5" fill="#D4849B" opacity="0.7"/>
+          <!-- Bow left loop -->
+          <ellipse cx="65" cy="42" rx="22" ry="14" fill="#C06E7E" transform="rotate(-20 65 42)"/>
+          <!-- Bow right loop -->
+          <ellipse cx="95" cy="42" rx="22" ry="14" fill="#C06E7E" transform="rotate(20 95 42)"/>
+          <!-- Bow center -->
+          <circle cx="80" cy="46" r="9" fill="#D4849B"/>
+          <!-- Stars -->
+          <text x="35" y="130" font-size="18" opacity="0.5">✨</text>
+          <text x="105" y="145" font-size="14" opacity="0.4">⭐</text>
+        </svg>
+      </div>
+      <p class="gift-hint">Tap to open 🎁</p>
+    </div>
+    <div id="gift-reveal" class="gift-reveal"></div>
+  </section>
+
+
+  <!-- ENDING -->
+  <section id="section-ending">
+    <div class="ending-stars"></div>
+    <div class="ending-content">
+      <p class="ending-small reveal">the end of a beautiful day</p>
+      <h2 class="ending-main reveal"></h2>
+      <p class="ending-sub reveal"></p>
+      <span class="ending-heart reveal">🤍</span>
+    </div>
+  </section>
+
+</div><!-- /main-website -->
+
+
+<!-- Music button (fixed) -->
+<button id="music-btn" title="Toggle music" aria-label="Toggle music">🎵</button>
+
+<!-- Background audio -->
+<audio id="bg-audio" preload="none" loop></audio>
+
+<!-- Letter modal (shared) -->
+<div id="letter-modal" role="dialog" aria-modal="true" aria-label="Birthday letter">
+  <div class="letter-card">
+    <button class="letter-close" aria-label="Close letter">✕</button>
+    <div class="letter-lines"></div>
+    <div class="letter-text"></div>
+  </div>
+</div>
+
+<!-- Lightbox (shared) -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lightbox-close" aria-label="Close photo">✕</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" src="" alt="">
+    <p class="lightbox-title"></p>
+    <p class="lightbox-meta"></p>
+    <p class="lightbox-caption"></p>
+  </div>
+</div>
+
+
+<!-- ── SCRIPTS ───────────────────────────────────────────── -->
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

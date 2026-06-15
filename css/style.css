@@ -1,0 +1,1560 @@
+/* ============================================================
+   BIRTHDAY WEBSITE — MAIN STYLES
+   Design: Premium digital scrapbook · Soft glassmorphism
+   Mobile-first · Warm pastels · Elegant typography
+   ============================================================ */
+
+/* ── GOOGLE FONTS ────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Caveat:wght@400;600&display=swap');
+
+/* ── CSS VARIABLES ───────────────────────────────────────── */
+:root {
+  /* Palette */
+  --cream:       #FDF8F3;
+  --blush:       #F2C4C4;
+  --rose:        #E8A5A5;
+  --dusty-pink:  #D4849B;
+  --mauve:       #C06E7E;
+  --peach:       #F5CBA7;
+  --warm-gold:   #E8C47B;
+  --sage:        #B5C9B7;
+  --lavender:    #C9C0E8;
+  --night:       #1A1025;
+  --night-soft:  #2D1F3D;
+  --text-dark:   #3D2C35;
+  --text-mid:    #7A5F6A;
+  --text-light:  #B09AA8;
+  --white:       #FFFFFF;
+
+  /* Glass */
+  --glass-bg:    rgba(255,255,255,0.65);
+  --glass-border:rgba(255,255,255,0.80);
+  --glass-shadow:0 8px 32px rgba(180,130,150,0.18);
+
+  /* Typography */
+  --font-display: 'Playfair Display', serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-hand:    'Caveat', cursive;
+
+  /* Transitions */
+  --ease-soft:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-gentle: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --dur-fast:    0.25s;
+  --dur-mid:     0.5s;
+  --dur-slow:    0.9s;
+}
+
+/* ============================================================
+   SELECTION: TARUH DI LUAR / DI BAWAH :ROOT BIAR AKTIF GLOBAL
+   ============================================================ */
+
+/* Untuk browser modern (Chrome, Safari, Edge, Opera) */
+::selection {
+  background-color: var(--blush) !important; /* Menggunakan warna pink blush */
+  color: var(--text-dark) !important;       /* Teksnya tetap gelap */
+}
+
+/* Khusus untuk browser Firefox */
+::-moz-selection {
+  background-color: var(--blush) !important;
+  color: var(--text-dark) !important;
+}
+
+/* ── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--cream);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input  { font-family: inherit; }
+
+/* ── SCREEN SYSTEM ───────────────────────────────────────── */
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 2rem 1.5rem;
+  transition: opacity var(--dur-slow) var(--ease-gentle),
+              transform var(--dur-slow) var(--ease-gentle);
+}
+
+.screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.97);
+}
+
+/* ── GRADIENT BACKGROUNDS ────────────────────────────────── */
+.bg-intro {
+  background: linear-gradient(145deg, #FDF0F5 0%, #F5E6F8 40%, #EAE6FF 100%);
+}
+
+.bg-password {
+  background: linear-gradient(145deg, #F8EDF5 0%, #F0E6FF 50%, #E8F0FF 100%);
+}
+
+.bg-celebration {
+  background: linear-gradient(145deg, #FFF0E6 0%, #FFE6F5 50%, #F0E6FF 100%);
+}
+
+/* ── GLASS CARD ──────────────────────────────────────────── */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  box-shadow: var(--glass-shadow);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+/* ── TYPOGRAPHY ──────────────────────────────────────────── */
+.overline {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+h1, .display {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-dark);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 6vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-dark);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+.handwritten {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  color: var(--mauve);
+}
+
+/* ── INPUTS ──────────────────────────────────────────────── */
+.elegant-input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1.5px solid rgba(208,160,175,0.4);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.8);
+  font-size: 1.05rem;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.elegant-input:focus {
+  border-color: var(--dusty-pink);
+  box-shadow: 0 0 0 4px rgba(212,132,155,0.15);
+}
+
+.elegant-input::placeholder { color: var(--text-light); }
+
+/* ── BUTTONS ─────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2.5rem;
+  background: linear-gradient(135deg, var(--dusty-pink), var(--mauve));
+  color: white;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-top: 1.5rem;
+  box-shadow: 0 6px 20px rgba(192,110,126,0.35);
+  transition: transform var(--dur-fast) var(--ease-soft),
+              box-shadow var(--dur-fast);
+}
+
+.btn-primary:hover  { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(192,110,126,0.45); }
+.btn-primary:active { transform: scale(0.96); }
+
+/* ── FADE ANIMATION ──────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up { animation: fadeUp 0.7s var(--ease-gentle) both; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.25s; }
+.delay-3 { animation-delay: 0.4s; }
+.delay-4 { animation-delay: 0.6s; }
+
+/* ── ERROR SHAKE ─────────────────────────────────────────── */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-10px); }
+  40%     { transform: translateX(10px); }
+  60%     { transform: translateX(-8px); }
+  80%     { transform: translateX(8px); }
+}
+
+.shake { animation: shake 0.45s var(--ease-gentle); }
+
+/* ── ERROR MESSAGE ───────────────────────────────────────── */
+.error-msg {
+  font-size: 0.85rem;
+  color: var(--mauve);
+  margin-top: 0.75rem;
+  min-height: 1.2em;
+  transition: opacity var(--dur-fast);
+}
+
+/* ============================================================
+   CELEBRATION SCREEN
+   ============================================================ */
+#screen-celebration {
+  overflow: hidden;
+  z-index: 200;
+}
+
+.celebration-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.balloons-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding-bottom: 4rem;
+  position: relative;
+  z-index: 10;
+}
+
+.balloon-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+@keyframes floatBalloon {
+  0%,100% { transform: translateY(0) rotate(-2deg); }
+  50%     { transform: translateY(-18px) rotate(2deg); }
+}
+
+.balloon-svg {
+  width: 80px;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+  animation: floatBalloon 2.5s ease-in-out infinite;
+}
+
+.balloon-string {
+  width: 1.5px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(160,120,140,0.6), transparent);
+}
+
+.balloon-wrap.popped .balloon-svg {
+  animation: none;
+}
+
+@keyframes popBurst {
+  0%   { transform: scale(1); opacity: 1; }
+  40%  { transform: scale(1.4); opacity: 0.7; }
+  100% { transform: scale(0.1); opacity: 0; }
+}
+
+.balloon-wrap.popping .balloon-svg {
+  animation: popBurst 0.4s var(--ease-gentle) forwards;
+}
+
+.tap-hint {
+  font-family: var(--font-hand);
+  font-size: 1.4rem;
+  color: var(--mauve);
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+/* Petal curtain */
+.petal-curtain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 300;
+  overflow: hidden;
+}
+
+@keyframes petalFall {
+  0%   { transform: translateY(-100px) rotate(0deg) translateX(0); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg) translateX(var(--drift)); opacity: 0; }
+}
+
+.petal {
+  position: absolute;
+  top: -20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50% 10% 50% 10%;
+  animation: petalFall var(--dur) ease-in forwards;
+  left: var(--left);
+  animation-delay: var(--delay);
+}
+
+/* ============================================================
+   MAIN WEBSITE
+   ============================================================ */
+#main-website {
+  display: none;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#main-website.visible { display: block; }
+
+/* ── HERO ─────────────────────────────────────────────────── */
+#hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+  background: linear-gradient(160deg, #FDF0F8 0%, #F5E6FF 50%, #EAF0FF 100%);
+  overflow: hidden;
+}
+
+.hero-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  0%,100% { opacity: 0.3; transform: scale(0.8); }
+  50%     { opacity: 1; transform: scale(1.2); }
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 1rem;
+  animation: twinkle var(--dur) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mauve);
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 9vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  background: linear-gradient(135deg, var(--text-dark) 0%, var(--mauve) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+@keyframes bounceDown {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(6px); }
+}
+
+.scroll-arrow {
+  font-size: 1.2rem;
+  animation: bounceDown 1.5s ease-in-out infinite;
+}
+
+/* ── MUSIC BUTTON ────────────────────────────────────────── */
+#music-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(180,130,150,0.2);
+  font-size: 1.3rem;
+  z-index: 1000;
+  transition: transform var(--dur-fast) var(--ease-soft);
+  display: none;
+}
+
+#music-btn.visible { display: flex; align-items: center; justify-content: center; }
+#music-btn:hover   { transform: scale(1.12); }
+
+@keyframes musicPulse {
+  0%,100% { box-shadow: 0 4px 20px rgba(180,130,150,0.2); }
+  50%     { box-shadow: 0 4px 28px rgba(192,110,126,0.4); }
+}
+
+#music-btn.playing { animation: musicPulse 2s ease-in-out infinite; }
+
+/* ── SECTION BASE ────────────────────────────────────────── */
+.section {
+  padding: 5rem 1.5rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dusty-pink);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.section-body {
+  font-size: 1rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+}
+
+/* ── REVEAL ON SCROLL ─────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s var(--ease-gentle),
+              transform 0.7s var(--ease-gentle);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+#section-gallery {
+  background: linear-gradient(160deg, #FFF5F8 0%, #F5F0FF 100%);
+  padding: 5rem 1rem;
+  max-width: 100%;
+}
+
+.gallery-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 480px) {
+  .polaroid-grid { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+}
+
+.polaroid {
+  background: white;
+  border-radius: 4px;
+  padding: 0.75rem 0.75rem 2.5rem;
+  box-shadow: 0 4px 20px rgba(180,130,150,0.15), 0 1px 4px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: transform var(--dur-mid) var(--ease-soft),
+              box-shadow var(--dur-mid);
+  transform: rotate(var(--tilt, 0deg));
+  position: relative;
+}
+
+.polaroid:nth-child(odd)  { --tilt: -1.5deg; }
+.polaroid:nth-child(even) { --tilt: 1.5deg; }
+
+.polaroid:hover {
+  transform: rotate(0deg) translateY(-6px) scale(1.04);
+  box-shadow: 0 16px 40px rgba(180,130,150,0.25);
+  z-index: 10;
+}
+
+.polaroid-img-wrap {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F5E6F0, #E8E6F5);
+  border-radius: 2px;
+}
+
+.polaroid-img-wrap img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: var(--text-light);
+}
+
+.polaroid-placeholder .ph-icon { font-size: 2rem; opacity: 0.5; }
+.polaroid-placeholder .ph-text { font-size: 0.65rem; text-align: center; }
+
+.polaroid-caption {
+  font-family: var(--font-hand);
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  text-align: center;
+  margin-top: 0.6rem;
+  line-height: 1.3;
+}
+
+/* ── LIGHTBOX ─────────────────────────────────────────────── */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(30,15,30,0.92);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-mid) var(--ease-gentle);
+}
+
+#lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-inner {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform var(--dur-mid) var(--ease-soft);
+}
+
+#lightbox.open .lightbox-inner { transform: scale(1); }
+
+.lightbox-img {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  max-height: 60vh;
+}
+
+.lightbox-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: white;
+  margin-top: 1rem;
+}
+
+.lightbox-meta {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.25rem;
+}
+
+.lightbox-caption {
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.8);
+  margin-top: 0.5rem;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--dur-fast);
+}
+
+.lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+/* ============================================================
+   LETTER
+   ============================================================ */
+#section-letter {
+  background: var(--cream);
+}
+
+.envelope-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.5rem;
+  cursor: pointer;
+}
+
+.envelope {
+  width: 200px;
+  position: relative;
+  transition: transform var(--dur-mid) var(--ease-soft);
+}
+
+.envelope:hover { transform: translateY(-5px); }
+
+.envelope svg { width: 100%; }
+
+.envelope-label {
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: var(--mauve);
+  margin-top: 1rem;
+  opacity: 0.85;
+}
+
+/* Letter modal */
+#letter-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(30,15,30,0.85);
+  backdrop-filter: blur(16px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-mid) var(--ease-gentle);
+}
+
+#letter-modal.open { opacity: 1; pointer-events: all; }
+
+.letter-card {
+  background: #FEF9F2;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  max-width: 480px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  transform: translateY(30px);
+  transition: transform var(--dur-mid) var(--ease-soft);
+  position: relative;
+}
+
+#letter-modal.open .letter-card { transform: none; }
+
+.letter-lines {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgba(212,180,190,0.2) 31px,
+    rgba(212,180,190,0.2) 32px
+  );
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.letter-text {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  line-height: 2;
+  color: var(--text-dark);
+  position: relative;
+  z-index: 1;
+}
+
+.letter-text .dear-line {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--mauve);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.letter-text p { margin-bottom: 1rem; min-height: 1.5em; }
+
+.letter-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(212,132,155,0.15);
+  color: var(--mauve);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   MINI GAMES
+   ============================================================ */
+#section-games {
+  background: linear-gradient(160deg, #F5F0FF 0%, #FFF0F5 100%);
+  padding: 5rem 1.5rem;
+  max-width: 100%;
+}
+
+.games-inner { max-width: 680px; margin: 0 auto; }
+
+.games-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.6);
+  border-radius: 16px;
+  padding: 0.4rem;
+  margin: 2rem 0;
+  border: 1px solid rgba(255,255,255,0.9);
+}
+
+.game-tab {
+  flex: 1;
+  padding: 0.6rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  transition: all var(--dur-fast);
+  text-align: center;
+}
+
+.game-tab.active {
+  background: white;
+  color: var(--mauve);
+  box-shadow: 0 2px 10px rgba(192,110,126,0.15);
+}
+
+.game-panel { display: none; }
+.game-panel.active { display: block; }
+
+/* Memory Game */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+  margin: 1.5rem auto 0; /* Memberi jarak atas dan otomatis ke tengah */
+  max-width: 320px;       /* MENGUNCI LEBAR AGAR KOTAK KEMBALI KECIL */
+  width: 100%;
+}
+
+.mem-card {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.mem-card.flipped { transform: rotateY(180deg); }
+
+.mem-face, .mem-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.mem-back {
+  background: linear-gradient(135deg, var(--dusty-pink), var(--mauve));
+  box-shadow: 0 2px 8px rgba(192,110,126,0.25);
+}
+
+.mem-face {
+  background: white;
+  border: 1.5px solid rgba(212,132,155,0.2);
+  transform: rotateY(180deg);
+}
+
+.mem-card.matched .mem-back {
+  background: linear-gradient(135deg, var(--sage), #8BB89A);
+}
+
+.game-status {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  margin-top: 1rem;
+}
+
+.game-unlock-msg {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: var(--mauve);
+  display: none;
+}
+
+.game-unlock-msg.show { display: block; }
+
+/* Puzzle */
+.puzzle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  max-width: 300px;
+  margin: 1.5rem auto 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(180,130,150,0.2);
+}
+
+.puzzle-piece {
+  aspect-ratio: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, var(--blush), var(--lavender));
+  transition: background var(--dur-fast);
+  font-weight: 600;
+  color: var(--text-mid);
+  user-select: none;
+}
+
+.puzzle-piece.empty {
+  background: rgba(255,255,255,0.4) !important;
+  cursor: default;
+}
+
+.puzzle-piece.selected {
+  outline: 2px solid var(--mauve);
+  outline-offset: -2px;
+}
+
+/* Quiz */
+.quiz-question {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 1.5rem 0 1rem;
+}
+
+.quiz-emoji {
+  font-size: 2rem;
+  display: block;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.quiz-opt {
+  padding: 0.8rem 0.75rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.7);
+  border: 1.5px solid rgba(212,132,155,0.2);
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  transition: all var(--dur-fast);
+  text-align: center;
+}
+
+.quiz-opt:hover  { background: rgba(255,255,255,0.95); border-color: var(--dusty-pink); }
+.quiz-opt.correct { background: rgba(181,201,183,0.5); border-color: var(--sage); color: #3D5C40; }
+.quiz-opt.wrong   { background: rgba(242,196,196,0.5); border-color: var(--blush); }
+
+.quiz-progress {
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.q-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(212,132,155,0.3);
+  transition: background var(--dur-fast);
+}
+
+.q-dot.done { background: var(--mauve); }
+
+.quiz-result {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.7);
+  border-radius: 16px;
+  margin-top: 1rem;
+  display: none;
+}
+
+.quiz-result.show  { display: block; }
+.quiz-result .score { font-size: 2.5rem; font-weight: 700; font-family: var(--font-display); color: var(--mauve); }
+.quiz-result .msg   { font-family: var(--font-hand); font-size: 1.1rem; color: var(--text-mid); margin-top: 0.75rem; }
+
+
+/* ============================================================
+   SURPRISE GIFT (PENGUNCI TENGAH SEMPURNA — ANTI MENCONG)
+   ============================================================ */
+#section-gift {
+  padding: 5rem 1.5rem !important; /* Kembalikan padding samping normal template lu */
+  text-align: center !important;
+
+  /* Reset total trik koordinat yang bikin eror */
+  width: 100% !important;
+  max-width: 100% !important;
+  position: relative !important;
+  left: 0 !important;
+  transform: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  /* Gunakan flexbox murni untuk memaksa semua konten masuk ke tengah */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  background: transparent !important;
+  box-sizing: border-box !important;
+}
+
+/* Memastikan pembungkus kado dan teks petunjuk terkunci lurus di tengah */
+.gift-box-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 2.5rem auto 0 auto !important;
+  width: 100% !important;
+  max-width: 400px !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+.gift-box {
+  width: 140px;
+  position: relative;
+  transition: transform var(--dur-mid) var(--ease-soft);
+}
+
+.gift-box:hover { transform: scale(1.06) translateY(-4px); }
+.gift-box svg   { width: 100%; }
+
+.gift-hint {
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: var(--mauve);
+  margin-top: 1rem;
+}
+
+/* KOTAK PUTIH YANG MUNCUL SETELAH KADO DI-TAP */
+.gift-reveal {
+  width: 92% !important;
+  max-width: 380px; 
+  margin: 2rem auto 0;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  
+  /* PERBAIKAN UTAMA: Padding atas dikecilkan jadi 1rem agar teksnya naik ke atas */
+  padding: 1rem 1.75rem 2rem 1.75rem !important; 
+  
+  text-align: center;
+  display: none;
+  box-shadow: var(--glass-shadow);
+  box-sizing: border-box !important;
+}
+
+/* Biar teks di dalamnya gak punya jarak atas tambahan */
+.gift-msg {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-top: 0 !important; /* Membuang sisa margin atas teks */
+  padding-top: 0 !important;
+}
+
+/* ── CONFETTI ────────────────────────────────────────────── */
+.confetti-piece {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 2px;
+  animation: confettiFall var(--dur) ease-in forwards;
+  left: var(--left);
+  top: -10px;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(var(--spin)); opacity: 0; }
+}
+
+/* ============================================================
+   ENDING
+   ============================================================ */
+#section-ending {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  background: linear-gradient(160deg, var(--night) 0%, #2A1040 50%, var(--night-soft) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.ending-stars { position: absolute; inset: 0; pointer-events: none; }
+
+.star-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: starTwinkle var(--dur) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes starTwinkle {
+  0%,100% { opacity: 0.2; transform: scale(0.8); }
+  50%     { opacity: 0.9; transform: scale(1.2); }
+}
+
+.ending-content { position: relative; z-index: 2; max-width: 460px; }
+
+.ending-small {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 2rem;
+}
+
+.ending-main {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 7vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.ending-sub {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+}
+
+.ending-heart {
+  font-size: 2.5rem;
+  margin-top: 2.5rem;
+  display: block;
+  animation: heartBeat 2s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%,100% { transform: scale(1); }
+  15%     { transform: scale(1.18); }
+  30%     { transform: scale(1); }
+  45%     { transform: scale(1.08); }
+}
+
+/* ============================================================
+   GAYA BARU WHACK-A-MOLE
+   ============================================================ */
+.whack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.whack-hole {
+  aspect-ratio: 1;
+  background: #f0e6ff;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 4px solid var(--lavender);
+  box-shadow: inset 0 6px 0 rgba(0,0,0,0.1);
+}
+
+.whack-mole {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 100%; /* Bersembunyi di bawah lubang */
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.3rem; /* Ukuran jika menggunakan mode Emoji */
+  cursor: pointer;
+  transition: top 0.12s ease;
+}
+
+/* Mengangkat mole/foto ke atas lubang */
+.whack-mole.up {
+  top: 0;
+}
+
+/* ============================================================
+   DECORATE THE CAKE STYLES
+   ============================================================ */
+.cake-opt-btn {
+  flex: 1;
+  padding: 8px 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 10px;
+  background: #fdf8f3;
+  border: 1.5px solid var(--lavender);
+  color: var(--text-dark);
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.cake-opt-btn:hover {
+  background: #fff;
+  border-color: var(--dusty-pink);
+  transform: translateY(-1px);
+}
+
+@keyframes flamePulse {
+  0%, 100% { filter: drop-shadow(0 0 2px #ffdd67) scale(1); }
+  50% { filter: drop-shadow(0 0 10px #ff8444) scale(1.1); }
+}
+
+.lit-candle {
+  animation: flamePulse 0.6s infinite ease-in-out;
+  display: inline-block;
+}
+
+/* ============================================================
+   DECORATE THE CAKE & GAME NOTIFICATIONS (FIXED & STERIL)
+   ============================================================ */
+
+/* 1. MENGUNCI TAB GAME AGAR STERIL (GAK BOCOR DAN GAK TEMBUS!) */
+.game-panel {
+  display: none !important; /* Sembunyikan total tab yang tidak aktif */
+}
+
+#panel-quiz.active {
+  display: block !important; /* Kembalikan ke block murni bawaan template lu */
+  position: relative !important;
+  /* KUNCI SPACING BAWAH: Kasih sela kosong bersih 50px di bawah tombol biar gak nempel One Last Thing */
+  padding-bottom: 50px !important; 
+  box-sizing: border-box !important;
+}
+
+#panel-memory.active,
+#panel-puzzle.active {
+  display: block !important;
+}
+
+/* 2. MENGUNCI HIASAN STROBERI & LILIN DI DALAM KANVAS UNGU */
+.cake-area {
+  position: relative !important;   /* WAJIB! Biar topping cuma tahu dinding ungu ini */
+  overflow: hidden !important;   /* POTONG PAKSA hiasan agar gak gentayangan keluar tab */
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 20px auto !important;
+  box-sizing: border-box !important;
+}
+
+#cake-toppings-zone {
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: 5 !important;
+}
+
+/* Card putih pesan sukses kue */
+#cake-celebration-msg {
+  display: block !important;
+  position: absolute !important;
+  bottom: 12px !important;
+  top: auto !important;
+  left: 12px !important;
+  right: 12px !important;
+  transform: none !important;
+  padding: 10px !important;
+  font-size: 0.85rem !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+  z-index: 10 !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(4px) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+  color: #333 !important;
+  box-sizing: border-box !important;
+}
+
+#base-cake-wrapper {
+  margin-bottom: 45px !important;
+}
+
+/* Notifikasi game lain */
+#memory-unlock, 
+#puzzle-unlock {
+  margin-top: 25px !important;
+  margin-bottom: 20px !important;
+  padding: 12px 18px !important;
+  text-align: center !important;
+}
+
+/* ── SCROLLBAR ───────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--blush); border-radius: 4px; }
+
+/* ── REDUCED MOTION ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}   
+
+/* ============================================================
+   DECORATE THE CAKE — UPGRADED ANIMATIONS
+   ============================================================ */
+.cake-item {
+  display: inline-block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Efek nyala api berdenyut terang pada lilin */
+@keyframes flameGlow {
+  0%, 100% { filter: drop-shadow(0 0 4px #ffcc00) drop-shadow(0 0 12px #ff4400) cubic-bezier(0.4, 0, 0.2, 1); transform: translate(-50%, 0) scale(1); }
+  50% { filter: drop-shadow(0 0 8px #ffea00) drop-shadow(0 0 20px #ff6600); transform: translate(-50%, -2px) scale(1.05); }
+}
+
+.lit-candle {
+  animation: flameGlow 0.5s infinite ease-in-out !important;
+}
+
+/* ============================================================
+   PENGATURAN ULANG JARAK NOTIFIKASI SUKSES & TOMBOL BAWAH
+   ============================================================ */
+
+/* 1. Atur jarak box teks sukses agar pas (tidak kemepetan dari objek game atas) */
+.game-unlock-msg, 
+#memory-unlock, 
+#puzzle-unlock, 
+#quiz-result {
+  margin-top: 45px !important;    /* DINAINKAN JADI 45px agar berjarak aman dari game */
+  margin-bottom: 35px !important; /* DINAINKAN JADI 35px agar tidak nempel ke tombol "Go on" */
+  padding: 15px 20px !important;  /* Ruang napas teks di dalam box */
+  display: block !important;
+  text-align: center !important;
+  clear: both !important;
+}
+
+/* 2. Beri kelonggaran sedikit pada bagian bawah panel game */
+.game-panel {
+  margin-bottom: 20px !important;  /* Ditambah 20px agar memberi ruang dorong ke bawah */
+  padding-bottom: 25px !important; /* Ditambah 25px untuk memperluas area background panel */
+}
+
+/* 3. Beri ruang tambahan pada pembungkus luar section agar layout bernapas lega */
+#section-games {
+  padding-bottom: 4rem !important; /* Ditinggikan ke 4rem agar tombol kelanjutan ada space di bawahnya */
+}
+
+/* ============================================================
+       ENDING: MEMBUNUH BOCORAN JARAK PUTIH DI PALING BAWAH
+       ============================================================ */
+    #section-ending, .bg-dark-section {
+      min-height: 100vh !important;
+      height: auto !important;
+      padding-top: 5rem !important;
+      
+      /* PERBAIKAN: Padding bawah digedein buat bungkus tombol musik + tutup sela ghoib */
+      padding-bottom: 8rem !important; 
+      box-sizing: border-box !important;
+
+      /* Trik menjebol dinding container induk agar full ke kanan-kiri */
+      width: 100vw !important;
+      position: relative !important;
+      left: 50% !important;
+      right: 50% !important;
+      margin-left: -50vw !important;
+      margin-right: -50vw !important;
+      
+      /* Kunci warna hitamnya agar menelan sisa kebocoran layout bawah */
+      background: linear-gradient(160deg, var(--night) 0%, #2A1040 50%, var(--night-soft) 100%) !important; 
+      margin-bottom: -100px !important; /* Dorong negatif ke bawah untuk menembus sela kosong browser */
+    }
+
+    /* Memastikan body ikut mengunci warna di ujung akhir halaman jika user over-scroll */
+    body {
+      background-color: var(--cream); /* Atas tetep krem */
+    }
+
+/* PERBAIKAN TOTAL: MENYAMAKAN LEBAR SECARA FORCE */
+#section-ending .glass-card, 
+#section-ending .ending-content,
+#section-ending > div {
+  /* KITA NAIKKAN PERSENTASENYA ATAU GUNAKAN ANCHOR FULL WIDTH */
+  width: 95% !important; /* Jika masih kurang lebar dari box atas, naikkan perlahan ke 96% atau 98% */
+  max-width: 100% !important; 
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+  
+  /* Reset paksa margin eksternal bawaan template yang bikin ciut */
+  padding: 30px 20px !important;
+}
+
+#cake-celebration-msg {
+  /* PAKSA MUNCUL & ATUR POSISI DI BAWAH KUE */
+  display: block !important; 
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+
+  /* Jarak manis biar gak nempel kontainer kue & tombol */
+  margin: 15px auto !important; 
+  padding: 12px 15px !important;
+  width: 90% !important;
+  max-width: 380px !important;
+
+  /* Desain kotak putih cantik transparan lu */
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(4px) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.4 !important;
+  color: #333 !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+/* ============================================================
+   PERBAIKAN SAKTI: KUE MUNCUL OTOMATIS & KADO MUNCUL PAS DITAP
+   ============================================================ */
+
+/* 1. Aturan khusus kotak ucapan kue (Selalu muncul di bawah kue) */
+#cake-celebration-msg {
+  display: block !important; /* Paksa teks kue langsung muncul */
+  position: absolute !important;
+  bottom: 12px !important;
+  top: auto !important;
+  left: 12px !important;
+  right: 12px !important;
+  transform: none !important;
+  padding: 10px !important;
+  font-size: 0.85rem !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+  z-index: 10 !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(4px) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+  color: #333 !important;
+  box-sizing: border-box !important;
+}
+
+/* Biar kuenya otomatis naik sedikit memberi ruang untuk si putih di bawahnya */
+#base-cake-wrapper {
+  margin-bottom: 45px !important;
+}
+
+/* ============================================================
+   SURPRISE GIFT: RATALAH DIKAU WAHAI SPACE KOSONG!
+   ============================================================ */
+
+/* Box putih pesan rahasia */
+.gift-reveal {
+  display: none; /* Sembunyi dulu */
+  width: 92% !important;
+  max-width: 380px !important;
+  margin: 0 auto; /* Buat margin atasnya 0 biar nempel ke teks 'Go on' */
+  padding: 1.5rem 1.25rem !important;
+  text-align: center !important;
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  backdrop-filter: blur(16px) !important;
+  border-radius: 24px !important;
+  box-shadow: var(--glass-shadow) !important;
+  box-sizing: border-box !important;
+}
+
+/* Pas kado dibuka, kotak putih ini mekar */
+.gift-reveal.open {
+  display: block !important;
+  animation: fadeUp 0.5s var(--ease-soft) !important;
+}
+
+/* 🚨 TRICK UTAMA: Saat kado sudah dibuka, hilangkan paksa pembungkus kado dan teks "Tap to open" */
+#section-gift:has(.gift-reveal.open) .gift-box-wrap,
+#section-gift:has(.gift-reveal.open) .gift-hint {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+}
+
+/* ============================================================
+   HAPUS TOTAL SCROLLBAR (BATANG SCROLL PINK) DI SEBELAH KANAN
+   ============================================================ */
+
+/* Untuk Chrome, Safari, dan Opera */
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Untuk seluruh elemen halaman agar tidak memunculkan scrollbar */
+html, body {
+  scrollbar-width: none !important; /* Untuk browser Firefox */
+  -ms-overflow-style: none !important;  /* Untuk browser Internet Explorer / Edge lama */
+  overflow-x: hidden !important; /* Mencegah layar geser-geser ke kanan-kiri */
+}
+
+/* ── SCROLLBAR ───────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--blush); border-radius: 4px; }
+
+/* ── REDUCED MOTION ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
