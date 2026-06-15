@@ -481,7 +481,7 @@ function typeLetterText() {
   textEl.innerHTML = "";
 
   const dearLine = create("span", "dear-line");
-  dearLine.textContent = `Dear ${State.visitorName},`;
+  dearLine.textContent = `Dear ${State.visitorName},`; // Ini bawaan template lu yang udah bener
   textEl.appendChild(dearLine);
 
   let lineIndex = 0;
@@ -490,7 +490,13 @@ function typeLetterText() {
     const p = create("p");
     textEl.appendChild(p);
     let charIndex = 0;
-    const text = CONFIG.birthdayLetter[lineIndex];
+    
+    // 🚨 KUNCI UTAMA: Kita ambil teks asli dari CONFIG, lalu paksa ganti kodenya jadi nama asli
+    let text = CONFIG.birthdayLetter[lineIndex];
+    if (text.includes("${State.name}")) {
+      text = text.replace("${State.name}", State.visitorName);
+    }
+
     function typeChar() {
       if (charIndex < text.length) {
         p.textContent += text[charIndex++];
@@ -655,7 +661,7 @@ function initPuzzleGame() {
       setTimeout(() => {
         canvas.remove();
         unlockEl.classList.add("show");
-        unlockEl.textContent = "Yeay! Jangan lupa di-screenshot dan klaim ke aku ya! 🥳";
+        unlockEl.textContent = "Yeay! Terima kasih ya udah lahir di dunia ini!";
       }, 500);
     }
   }

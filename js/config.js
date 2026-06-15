@@ -29,7 +29,7 @@ const CONFIG = {
     "Not because of grand gestures or perfect moments, but because of the small, real ways you show up.",
     "The laughter you bring. The patience you carry. The light that follows you without you even trying.",
     "So today, on your special day breathe it all in. You deserve every bit of the joy coming your way.",
-    "Happy Birthday, Nikhlatul Afifah. 🤍"
+    "Happy Birthday, ${State.name}! 🤍"
   ],
 
   // ── ENDING MESSAGE ───────────────────────────────────────
@@ -56,6 +56,6 @@ const CONFIG = {
   memoryUnlockMessage: "You have the patience of a saint and the memory of an elephant. Here's a little reward 🌸",
 
   // ── SURPRISE GIFT ────────────────────────────────────────
-  giftMessage: "This little gift is really just a reminder: you are so deeply loved. Not just today — always. 🎁🤍",
+  giftMessage: "This little gift is really just a reminder: you are so deeply loved. Not just today, always. 🎁🤍",
 
 };
