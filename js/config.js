@@ -24,12 +24,12 @@ const CONFIG = {
   // The first line "Dear [Name]," is added automatically.
   birthdayLetter: [
     "Some people walk into your life quietly, and somehow everything feels a little warmer after.",
-    "You are one of those rare people — the kind who makes ordinary moments feel like they matter.",
+    "You are one of those rare people the kind who makes ordinary moments feel like they matter.",
     "On this birthday, I want you to know that the world is genuinely better because you're in it.",
     "Not because of grand gestures or perfect moments, but because of the small, real ways you show up.",
     "The laughter you bring. The patience you carry. The light that follows you without you even trying.",
-    "So today, on your special day — breathe it all in. You deserve every bit of the joy coming your way.",
-    "Happy Birthday. Here's to you, always. 🤍"
+    "So today, on your special day breathe it all in. You deserve every bit of the joy coming your way.",
+    "Happy Birthday, Nikhlatul Afifah. 🤍"
   ],
 
   // ── ENDING MESSAGE ───────────────────────────────────────
@@ -50,21 +50,10 @@ const CONFIG = {
     { src: "assets/images/photo9.jpg",  title: "Just us",                  date: "Jul 2023",  caption: "Final chapter" },
   ],
 
-  // ── WHACK-A-MOLE GAME (GANTI QUIZ) ────────────────────────
-  whackTimeLimit: 30, // Durasi game dalam detik
-  whackTargetEmoji: "😜", // Jika tidak pakai foto, bisa pakai emoji komuk di sini
-  whackTargetImage: "assets/images/komuk.jpg", // Jalur foto komukmu (kosongkan "" jika mau pakai emoji saja)
-  whackWinMessage: "Hebat banget! Skor kamu tinggi. Berarti kamu emang gemes banget ya pengen pukulin muka aku? Hahaha, Happy Birthday! 🤍",
-
   // ── MEMORY CARD GAME ────────────────────────────────────
   // Emoji pairs used for the memory card game
   memoryEmojis: ["🌸", "🌙", "⭐", "🎀", "🌈", "🦋", "🍀", "💫"],
   memoryUnlockMessage: "You have the patience of a saint and the memory of an elephant. Here's a little reward 🌸",
-
-  // ── PUZZLE ───────────────────────────────────────────────
-  // Image used for the sliding puzzle — place in assets/images/
-  puzzleImage: "assets/images/photo1.jpg",
-  puzzleCompleteMessage: "Piece by piece, you put it all together — just like you do in real life 🌟",
 
   // ── SURPRISE GIFT ────────────────────────────────────────
   giftMessage: "This little gift is really just a reminder: you are so deeply loved. Not just today — always. 🎁🤍",
