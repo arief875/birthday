@@ -118,7 +118,6 @@
 
 
 <!-- CELEBRATION SCREEN -->
-<!-- CELEBRATION SCREEN (Kunci Balon Kembali Center Sempurna) -->
 <div id="screen-celebration" class="screen bg-celebration hidden">
   <canvas id="celebration-canvas" class="celebration-canvas"></canvas>
   <div class="fade-up" style="text-align:center; position:relative; z-index:10; width:100%">
@@ -127,7 +126,7 @@
   </div>
 </div>
 
-<!-- 🎂 KAMAR BARU: KHUSUS KUE 3 TINGKAT & TEKS CANVA LU -->
+<!-- KUE 3 TINGKAT  -->
 <div id="screen-cake-sinematic" class="screen bg-celebration hidden" style="padding: 1rem 1.5rem;">
   <div id="celebration-cake-wrapper" class="hidden-cake" style="text-align: center; width: 100%;">
     
@@ -160,7 +159,6 @@
      ============================================================ -->
 <div id="main-website">
 
-  <!-- HERO -->
   <section id="hero">
     <div class="hero-sparkles"></div>
     <div class="hero-content">
@@ -177,16 +175,75 @@
   </section>
 
 
-  <!-- GALLERY -->
-  <section id="section-gallery">
-    <div class="gallery-inner">
-      <div class="reveal">
-        <p class="section-label">memory lane</p>
-        <h2 class="section-title">A little scrapbook, just for you.</h2>
-        <p class="section-body">Every photo a moment. Every moment a reason to smile.</p>
-      </div>
-      <div id="polaroid-grid" class="polaroid-grid"></div>
-    </div>
+  <section id="section-dashboard-birthday">
+    <div class="dashboard-inner reveal">
+      
+      <p class="section-label">special showcase</p>
+      <h2 class="section-title">It's Your Special Day!</h2>
+
+      <div class="dash-main-card">
+        
+        <div class="bg-floating-layer">
+          <div class="float-item fl-1">🌸</div>
+          <div class="float-item fl-2">🎀</div>
+          <div class="float-item fl-3">✨</div>
+          <div class="float-item fl-4">💖</div>
+          <div class="float-item fl-5">🍥</div>
+          <div class="cake-floating-deco fl-6">
+            <div class="f-candle"></div>
+            <div class="f-tier"></div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          
+          <div class="dash-photo-wrapper">
+            <div class="dash-polaroid">
+              <div class="polaroid-tape"></div>
+              <div class="dash-img-container">
+                <img src="assets/images/photo1.jpg" alt="The Birthday Girl">
+              </div>
+              <p class="dash-polaroid-text">Happy Birthday! 🤍</p>
+            </div>
+          </div>
+
+          <div class="dash-content-wrapper">
+            
+            <p class="dash-middle-speech">
+              Hari spesial buat orang yang selalu ada, selalu ngerti, dan selalu bikin hari-hari jadi lebih berwarna.
+            </p>
+            
+            <div class="premium-countdown-card-pinky">
+              <p class="countdown-title-badge-pinky">The countdown to your big day</p>
+              <div class="countdown-boxes-row">
+                <div class="c-box-pink"><span id="dash-days" class="c-num-pink">00</span><p class="c-txt-pink">Hari</p></div>
+                <div class="c-divider-pink">:</div>
+                <div class="c-box-pink"><span id="dash-hours" class="c-num-pink">00</span><p class="c-txt-pink">Jam</p></div>
+                <div class="c-divider-pink">:</div>
+                <div class="c-box-pink"><span id="dash-minutes" class="c-num-pink">00</span><p class="c-txt-pink">Menit</p></div>
+                <div class="c-divider-pink">:</div>
+                <div class="c-box-pink"><span id="dash-seconds" class="c-num-pink">00</span><p class="c-txt-pink">Detik</p></div>
+              </div>
+            </div>
+
+            <div class="dash-sticky-note">
+              <div class="note-pin">📌</div>
+              <h3 class="note-title">Untuk kamu 🤍</h3>
+              <p class="note-body">Semoga semua hal baik datang bertubi-tubi di hidupmu ya! Bahagia terus dan jangan lupa tersenyum.</p>
+              <div class="note-envelope-deco">✉️</div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="dash-quote-container">
+          <p class="dash-quote-text">"Good friends are like stars, you don't always see them, but you know they're always there."</p>
+        </div>
+
+      </div> </div>
+
+    <div id="polaroid-grid" style="display: none !important;"></div>
   </section>
 
 

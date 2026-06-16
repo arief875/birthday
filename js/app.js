@@ -76,40 +76,62 @@ function goToAgeScreen() {
 }
 
 /* ============================================================
-   LIVE COUNTDOWN TIMER MENUJU 27 JUNI PUKUL 00:00
+   LIVE COUNTDOWN SAKTI: MENGGERAKKAN INTRO & DASHBOARD BARU COPO
    ============================================================ */
 function startIntroCountdown() {
   const countdownEl = $("intro-countdown");
-  if (!countdownEl) return;
+  
+  // Ambil elemen kotak dashboard baru biar bisa ditembak angkanya
+  const dDays = document.getElementById("dash-days");
+  const dHours = document.getElementById("dash-hours");
+  const dMins = document.getElementById("dash-minutes");
+  const dSecs = document.getElementById("dash-seconds");
 
-  // Set target waktu: 27 Juni 2026 pukul 00:00:00
+  // Set target waktu sakral: 27 Juni pukul 00:00:00
+  // Catatan: Sesuai waktu sistem runtime saat ini tahun 2026
   const targetDate = new Date("June 27, 2026 00:00:00").getTime();
 
   const timerInterval = setInterval(() => {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
-    // Jika waktu sudah lewat atau pas hari H
+    // JIKA WAKTU SUDAH LEWAT / HARI H
     if (distance < 0) {
       clearInterval(timerInterval);
-      countdownEl.textContent = "The special day is finally here!";
-      countdownEl.classList.add("countdown-now");
+      if (countdownEl) {
+        countdownEl.textContent = "The special day is finally here!";
+        countdownEl.classList.add("countdown-now");
+      }
+      
+      // Paksa dashboard nulis angka 00 semua
+      if (dDays) dDays.textContent = "00";
+      if (dHours) dHours.textContent = "00";
+      if (dMins) dMins.textContent = "00";
+      if (dSecs) dSecs.textContent = "00";
       return;
     }
 
-    // Hitung konversi waktu ke Hari, Jam, Menit, dan Detik
+    // HITUNG KONVERSI WAKTU LIVE
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Render tulisan menyambung estetik tanpa emoji sesuai tema lu
-    countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until the big day`;
+    // 1. Tembak data ke text timer intro (di atas kolom nama depan)
+    if (countdownEl) {
+      countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until the big day`;
+    }
 
-  }, 1000); // Update setiap 1 detik
+    // 2. TEMBOK DATA DETAK LIVE KE KOTAK DASHBOARD CANVA BARU LU (PLEK KETIPLEK)
+    if (dDays)  dDays.textContent  = String(days).padStart(2, '0');
+    if (dHours) dHours.textContent = String(hours).padStart(2, '0');
+    if (dMins)  dMins.textContent  = String(minutes).padStart(2, '0');
+    if (dSecs)  dSecs.textContent  = String(seconds).padStart(2, '0');
+
+  }, 1000); // Berdetak maju-mundur live setiap 1 detik!
 }
 
-// Jalankan fungsi countdown otomatis begitu file app.js dimuat
+// Pastikan fungsi countdown otomatis dijalankan begitu halaman dimuat
 document.addEventListener("DOMContentLoaded", () => {
   startIntroCountdown();
 });
