@@ -746,7 +746,7 @@ const randomRotate = Math.floor(Math.random() * 40) - 20;
     if (cakeWrap) cakeWrap.style.transform = "scale(1)";
     if (burnBtn) {
       burnBtn.disabled = false;
-      burnBtn.textContent = "Nyalakan Lilin & Tiup! 🕯️🔥";
+      burnBtn.textContent = "Nyalakan Lilin & Tiup!";
     }
   };
 
@@ -774,7 +774,7 @@ const randomRotate = Math.floor(Math.random() * 40) - 20;
     // Kunci tombol aksi utama
     if (burnBtn) {
       burnBtn.disabled = true;
-      burnBtn.textContent = "Lilin Menyala! Make a Wish ✨";
+      burnBtn.textContent = "Lilin Menyala! Make a Wish";
     }
 
     // Tampilkan teks ucapan
