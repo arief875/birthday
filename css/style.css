@@ -1529,6 +1529,273 @@ h2 {
 }
 
 /* ============================================================
+   KUSTOM KEYPAD NUMERIK & ANIMASI BERUANG AUTO-SUBMIT
+   ============================================================ */
+
+.bear-container {
+  position: absolute;
+  top: -72px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 65px;
+  user-select: none;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bear-face { z-index: 2; }
+
+.bear-hand {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #b07d62;
+  border-radius: 50%;
+  z-index: 3;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid var(--cream);
+}
+.left-hand { bottom: 8px; left: 6px; }
+.right-hand { bottom: 8px; right: 6px; }
+
+/* Efek menutup mata 🙈 */
+.bear-container.covering .left-hand { left: 22px; bottom: 35px; }
+.bear-container.covering .right-hand { right: 22px; bottom: 35px; }
+
+/* Grid layout keypad 3 kolom */
+.numeric-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 1.2rem auto 0 auto;
+  max-width: 260px;
+}
+
+.key-btn {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--glass-border);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  font-weight: 500;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s var(--ease-gentle);
+  box-shadow: 0 4px 10px rgba(180, 130, 150, 0.05);
+}
+
+.key-btn:active {
+  transform: scale(0.9);
+  background: var(--blush);
+  color: white;
+}
+
+/* Tombol Hapus Spesifik Kustom */
+.key-clear {
+  background: rgba(232, 165, 165, 0.15) !important;
+  color: var(--mauve) !important;
+  font-size: 1.1rem !important;
+}
+
+/* ============================================================
+   KUSTOM FINAL KUE 3 TINGKAT: AMBLAS SEJAJAR & NO-BOCORES
+   ============================================================ */
+
+#screen-cake-sinematic {
+  z-index: 250 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#celebration-cake-wrapper {
+  opacity: 0;
+  transform: scale(0.9) translateY(10px);
+  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#celebration-cake-wrapper.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Format Kata-kata Baru Canva Lu */
+.cake-sub-top {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text-mid);
+  margin-bottom: 0.4rem !important;
+  letter-spacing: 0.3px;
+}
+
+/* Teks Utama Wish & Timer */
+.cake-wish-text {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  color: var(--text-dark);
+  margin-bottom: 1.8rem !important;
+  font-weight: 700;
+}
+
+/* Kerangka Wadah Kue */
+.luxury-cake {
+  position: relative;
+  width: 240px;
+  height: 220px;
+  margin: 0 auto;
+}
+
+/* 🚨 REVISI LILIN: Diturunkan jadi 20px biar sejajar tertanam di krim kue */
+.candles-row {
+  position: absolute;
+  top: 20px; /* Diturunkan dari 17px agar sejajar nancap pas */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+.custom-candle {
+  position: relative;
+  width: 6px;
+  height: 22px;
+  background: linear-gradient(to bottom, var(--blush), #FFF);
+  border: 1.5px solid #3d2c35;
+  border-radius: 1px;
+}
+
+.custom-flame {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 8px;
+  height: 14px;
+  background: #ff9d00;
+  border-radius: 50% 50% 20% 20%;
+  box-shadow: 0 0 8px #ff9d00, 0 0 12px #ffdd00;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.custom-flame.ignited {
+  transform: translateX(-50%) scale(1);
+  animation: flameFlicker 0.6s ease-in-out infinite alternate;
+}
+
+/* Struktur 3 Lantai Kue Pink Pastel Scrapbook */
+.cake-tier {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 3px solid #3d2c35;
+  background-color: var(--blush);
+  box-shadow: inset 0 6px 0 rgba(255,255,255,0.35);
+}
+
+.tier-top {
+  bottom: 115px;
+  width: 110px;
+  height: 50px;
+  border-radius: 8px 8px 0 0;
+  background-image: linear-gradient(to bottom, var(--blush), #f5b3b3);
+}
+.tier-middle {
+  bottom: 55px;
+  width: 160px;
+  height: 60px;
+  background-image: linear-gradient(to bottom, #f5b3b3, var(--rose));
+}
+.tier-bottom {
+  bottom: 5px;
+  width: 210px;
+  height: 55px;
+  background-image: linear-gradient(to bottom, var(--rose), var(--dusty-pink));
+}
+.cake-plate {
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 10px;
+  background: #E8E2DC;
+  border: 3px solid #3d2c35;
+  border-radius: 10px;
+}
+
+/* Suasana Gelap & Glow */
+.room-darken { background: #11091c !important; }
+.room-darken .cake-sub-top { color: #b09aa8 !important; }
+.room-darken .cake-wish-text { color: #fdf8f3 !important; }
+
+.cake-glow-active {
+  background: radial-gradient(circle, rgba(242,196,196,0.35) 0%, var(--cream) 70%) !important;
+  transition: background 1.5s ease-out !important;
+}
+
+/* Peri Cahaya */
+.spark-light {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(circle, #FFF 10%, var(--warm-gold) 60%, transparent 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 20px 6px var(--warm-gold), 0 0 40px 12px var(--rose);
+  z-index: 9999;
+  animation: sparkWalkLong 4s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+}
+
+/* 🚨 REVISI TARGET JATUH CAHAYA: Diturunkan pas membakar sumbu lilin yang ikut amblas */
+@keyframes sparkWalkLong {
+  0%   { top: 80%; left: 15%; transform: scale(0.5); }
+  25%  { top: 35%; left: 80%; transform: scale(1.3); }
+  50%  { top: 20%; left: 20%; transform: scale(0.8); }
+  75%  { top: 55%; left: 50%; transform: scale(1.1); }
+  100% { top: calc(50% + 25px); left: 50%; transform: translateX(-50%) scale(0); }
+}
+
+/* ============================================================
+   STYLING COUNTDOWN BOX DI ATAS KOLOM NAMA
+   ============================================================ */
+.intro-countdown-box {
+  background: rgba(242, 196, 196, 0.25); /* Tint pink halus matching warna web */
+  border: 1px dashed var(--mauve);
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  font-weight: 500;
+  display: inline-block;
+  margin: 0 auto 10px auto;
+  letter-spacing: 0.5px;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+/* Efek kedip pendaran halus biar menarik perhatian si doi */
+@keyframes pulseGlow {
+  0% { transform: scale(1); box-shadow: 0 0 5px rgba(242, 196, 196, 0.2); }
+  100% { transform: scale(1.02); box-shadow: 0 0 12px rgba(242, 196, 196, 0.5); }
+}
+
+/* Gaya khusus pas waktu sudah menyentuh hari H */
+.countdown-now {
+  background: var(--blush) !important;
+  color: white !important;
+  border-style: solid !important;
+  font-weight: 600;
+}
+
+/* ============================================================
    HAPUS TOTAL SCROLLBAR (BATANG SCROLL PINK) DI SEBELAH KANAN
    ============================================================ */
 

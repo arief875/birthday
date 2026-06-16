@@ -76,6 +76,45 @@ function goToAgeScreen() {
 }
 
 /* ============================================================
+   LIVE COUNTDOWN TIMER MENUJU 27 JUNI PUKUL 00:00
+   ============================================================ */
+function startIntroCountdown() {
+  const countdownEl = $("intro-countdown");
+  if (!countdownEl) return;
+
+  // Set target waktu: 27 Juni 2026 pukul 00:00:00
+  const targetDate = new Date("June 27, 2026 00:00:00").getTime();
+
+  const timerInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    // Jika waktu sudah lewat atau pas hari H
+    if (distance < 0) {
+      clearInterval(timerInterval);
+      countdownEl.textContent = "The special day is finally here!";
+      countdownEl.classList.add("countdown-now");
+      return;
+    }
+
+    // Hitung konversi waktu ke Hari, Jam, Menit, dan Detik
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Render tulisan menyambung estetik tanpa emoji sesuai tema lu
+    countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until the big day`;
+
+  }, 1000); // Update setiap 1 detik
+}
+
+// Jalankan fungsi countdown otomatis begitu file app.js dimuat
+document.addEventListener("DOMContentLoaded", () => {
+  startIntroCountdown();
+});
+
+/* ============================================================
    STEP 2 — AGE SCREEN
    ============================================================ */
 function initAgeScreen() {
@@ -105,30 +144,67 @@ function goToPasswordScreen() {
 
 function initPasswordScreen() {
   const input = $("pwd-input");
-  const btn   = $("pwd-btn");
   const error = $("pwd-error");
+  const bearContainer = document.querySelector(".bear-container");
+  const clearBtn = $("key-clear");
+  const keys = document.querySelectorAll(".numeric-keypad .key-btn:not(.key-clear):not(.key-empty)");
 
-  setTimeout(() => input && input.focus(), 400);
+  if (!input) return;
 
-  btn.addEventListener("click", submitPassword);
-  input.addEventListener("keydown", e => { if (e.key === "Enter") submitPassword(); });
+  // Fungsi mengatur tangan beruang nutup mata
+  function updateBearState() {
+    if (input.value.length > 0) {
+      if (bearContainer) bearContainer.classList.add("covering");
+    } else {
+      if (bearContainer) bearContainer.classList.remove("covering");
+    }
+  }
 
-  function submitPassword() {
+  // Logika ketika tombol angka di-tap
+  keys.forEach(key => {
+    key.onclick = () => {
+      if (input.value.length < 6) {
+        input.value += key.getAttribute("data-val");
+        error.textContent = "";
+        updateBearState();
+
+        // 🚨 KUNCI UTAMA: Begitu menyentuh 6 digit, langsung eksekusi validasi otomatis!
+        if (input.value.length === 6) {
+          setTimeout(verifySecretCode, 300); // Diberi jeda 300ms biar angka ke-6 terinput dulu di layar
+        }
+      }
+    };
+  });
+
+  // Logika tombol hapus (⌫)
+  if (clearBtn) {
+    clearBtn.onclick = () => {
+      input.value = input.value.slice(0, -1);
+      error.textContent = "";
+      updateBearState();
+    };
+  }
+
+  // Fungsi Verifikasi Kode Otomatis
+  function verifySecretCode() {
     const val = input.value.trim();
     if (val === String(CONFIG.password)) {
       error.textContent = "";
       State.isUnlocked = true; 
       saveState();             
+      // Transisi mulus menuju halaman balon/selebrasi ultah
       fadeOutScreen("screen-password", startCelebration);
     } else {
+      // Jika salah, baru muncul tulisan eror dan efek getar
       error.textContent = "That doesn't seem to be the right code.";
-      // Shake the card
       const card = document.querySelector("#screen-password .glass-card");
       card.classList.remove("shake");
-      void card.offsetWidth; // reflow
+      void card.offsetWidth; // pemicu reflow animasi CSS
       card.classList.add("shake");
+      
+      // Kosongkan kembali inputan dan turunkan tangan beruang
       input.value = "";
-      setTimeout(() => input.focus(), 100);
+      setTimeout(updateBearState, 200);
     }
   }
 }
@@ -167,7 +243,8 @@ function buildBalloons() {
   function spawnNextBalloon() {
     // Jika semua balon sesuai jumlah umur sudah dipecahkan, langsung masuk curtain & web utama
     if (poppedCount >= targetCount) {
-      setTimeout(triggerPetalCurtain, 300);
+      // 🚨 KITA CEGAT DI SINI: Begitu balon habis, panggil efek ruangan menggelap
+      setTimeout(triggerCakeEnchantment, 400);
       return;
     }
 
@@ -301,6 +378,78 @@ function triggerPetalCurtain() {
   }
 
   setTimeout(revealMainWebsite, 2800);
+}
+
+/* ============================================================
+   TRANSISI STERIL KATA BOS: KUE 3 TINGKAT -> LILIN PADAM -> WEB UTAMA
+   ============================================================ */
+function triggerCakeEnchantment() {
+  const balloonHint = document.querySelector(".tap-hint");
+  if (balloonHint) {
+    balloonHint.style.display = "none";
+  }
+
+  // Pindah kamar ke screen kue kustom
+  showScreen("screen-cake-sinematic");
+
+  const celScreen = $("screen-cake-sinematic");
+  const cakeWrap = $("celebration-cake-wrapper");
+  const flames = document.querySelectorAll(".custom-flame");
+  const textHint = $("cake-instruction");
+
+  if (!celScreen || !cakeWrap) return;
+
+  // 1. Efek kamar menggelap syahdu
+  celScreen.classList.add("room-darken");
+
+  // 2. Munculkan kue secara anggun
+  cakeWrap.style.display = "block";
+  setTimeout(() => cakeWrap.classList.add("show"), 50);
+
+  // 3. Peri cahaya meluncur memutar (4 detik)
+  const spark = create("div", "spark-light");
+  celScreen.appendChild(spark);
+
+  // 4. JEDA 4 DETIK: Cahaya menyala serentak
+  setTimeout(() => {
+    if (spark) spark.remove();
+
+    flames.forEach(flame => flame.classList.add("ignited"));
+
+    celScreen.classList.remove("room-darken");
+    celScreen.classList.add("cake-glow-active");
+
+    const audioEl = document.getElementById("bg-audio");
+    if (audioEl) {
+      audioEl.play().catch(e => console.log("Autoplay ditahan browser:", e));
+      State.musicPlaying = true;
+      const btnMusic = document.getElementById("music-btn");
+      if (btnMusic) btnMusic.classList.add("playing");
+    }
+
+    // 5. TIMER 15 DETIK OTOMATIS
+    let countdown = 15;
+    textHint.textContent = `Make a wish, blowing out in ${countdown}s`;
+
+    const counterInterval = setInterval(() => {
+      countdown--;
+      if (countdown > 0) {
+        textHint.textContent = `Make a wish, blowing out in ${countdown}s`;
+      } else {
+        clearInterval(counterInterval);
+        
+        // 🚨 DI SINI SUDAH DIHAPUS TOTAL TEKS "BLOWING OUT"-NYA BOS!
+        flames.forEach(flame => flame.classList.remove("ignited"));
+        celScreen.classList.remove("cake-glow-active");
+
+        // Jeda romantis 1 detik, langsung meluncur pakai efek transisi bawaan template lu!
+        setTimeout(() => {
+          fadeOutScreen("screen-cake-sinematic", triggerPetalCurtain);
+        }, 1000);
+      }
+    }, 1000);
+
+  }, 4000);
 }
 
 /* ============================================================

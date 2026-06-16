@@ -16,9 +16,11 @@
 <!-- STEP 1 · NAME INPUT -->
 <div id="screen-name" class="screen bg-intro">
 
-  <!-- Name input card -->
   <div id="name-card" class="glass-card fade-up">
-    <p class="overline">A little something for you</p>
+    
+    <div id="intro-countdown" class="intro-countdown-box">Loading countdown...</div>
+
+    <p class="overline" style="margin-top: 1rem;">A little something for you</p>
     <h2 style="margin-bottom:0.5rem">Before we begin…</h2>
     <p class="subtitle" style="margin-top:0.5rem">What should I call you?</p>
     <input
@@ -67,32 +69,85 @@
 
 <!-- STEP 3 · PASSWORD -->
 <div id="screen-password" class="screen bg-password hidden">
-  <div class="glass-card fade-up">
-    <p style="font-size:2.5rem;margin-bottom:1rem">🔮</p>
-    <p class="overline">Secret code required</p>
-    <h2 style="margin-bottom:0.5rem">A little surprise has been prepared for you.</h2>
-    <p class="subtitle" style="margin-top:0.5rem">Enter the secret code to continue.</p>
-    <input
-      id="pwd-input"
-      type="password"
-      class="elegant-input"
-      placeholder="••••••"
-      maxlength="20"
-    >
-    <p id="pwd-error" class="error-msg"></p>
-    <button id="pwd-btn" class="btn-primary">
-      Open &nbsp;✨
-    </button>
+  <div class="glass-card fade-up" style="position: relative; margin-top: 40px; max-width: 340px;">
+    
+    <div class="bear-container">
+      <div class="bear-hand left-hand"></div>
+      <div class="bear-hand right-hand"></div>
+      <div class="bear-face">🐻</div>
+    </div>
+
+    <p class="overline" style="margin-top: 1rem;">Secret code required</p>
+    <h2 style="margin-bottom:0.2rem; font-size: 1.4rem;">Enter the secret code</h2>
+    <p class="subtitle" style="margin-top:0.2rem; margin-bottom: 0.2rem;">Enter the secret code to continue.</p>
+    
+    <p class="pwd-clue" style="font-family: var(--font-body); font-size: 0.85rem; color: var(--text-mid); font-style: italic; margin-top: 0px; margin-bottom: 0.5rem;">
+      Clue: your birthday 🎂
+    </p>
+    
+    <div class="pwd-display-wrapper">
+      <input
+        id="pwd-input"
+        type="password"
+        class="elegant-input text-center"
+        placeholder="••••••"
+        maxlength="6"
+        readonly
+      >
+    </div>
+    <p id="pwd-error" class="error-msg" style="min-height: 18px; margin: 5px 0;"></p>
+
+    <div class="numeric-keypad">
+      <button class="key-btn" data-val="1">1</button>
+      <button class="key-btn" data-val="2">2</button>
+      <button class="key-btn" data-val="3">3</button>
+      <button class="key-btn" data-val="4">4</button>
+      <button class="key-btn" data-val="5">5</button>
+      <button class="key-btn" data-val="6">6</button>
+      <button class="key-btn" data-val="7">7</button>
+      <button class="key-btn" data-val="8">8</button>
+      <button class="key-btn" data-val="9">9</button>
+      
+      <button class="key-btn key-empty" style="opacity: 0; pointer-events: none;"></button> 
+      <button class="key-btn" data-val="0">0</button>
+      <button class="key-btn key-clear" id="key-clear">⌫</button>
+    </div>
+
   </div>
 </div>
 
 
 <!-- CELEBRATION SCREEN -->
+<!-- CELEBRATION SCREEN (Kunci Balon Kembali Center Sempurna) -->
 <div id="screen-celebration" class="screen bg-celebration hidden">
   <canvas id="celebration-canvas" class="celebration-canvas"></canvas>
-  <div class="fade-up" style="text-align:center;position:relative;z-index:10;width:100%">
+  <div class="fade-up" style="text-align:center; position:relative; z-index:10; width:100%">
     <p class="tap-hint">Tap each balloon to pop it! 🎈</p>
     <div id="balloons-container" class="balloons-container"></div>
+  </div>
+</div>
+
+<!-- 🎂 KAMAR BARU: KHUSUS KUE 3 TINGKAT & TEKS CANVA LU -->
+<div id="screen-cake-sinematic" class="screen bg-celebration hidden" style="padding: 1rem 1.5rem;">
+  <div id="celebration-cake-wrapper" class="hidden-cake" style="text-align: center; width: 100%;">
+    
+    <p class="cake-sub-top">Close your eyes and let your heart speak before the flames fade</p>
+    
+    <h3 id="cake-instruction" class="cake-wish-text">Make a wish...</h3>
+    
+    <div class="luxury-cake">
+      <div class="candles-row">
+        <div class="custom-candle"><div class="custom-flame"></div></div>
+        <div class="custom-candle"><div class="custom-flame"></div></div>
+        <div class="custom-candle"><div class="custom-flame"></div></div>
+        <div class="custom-candle"><div class="custom-flame"></div></div>
+        <div class="custom-candle"><div class="custom-flame"></div></div>
+      </div>
+      <div class="cake-tier tier-top"></div>
+      <div class="cake-tier tier-middle"></div>
+      <div class="cake-tier tier-bottom"></div>
+      <div class="cake-plate"></div>
+    </div>
   </div>
 </div>
 
