@@ -55,6 +55,20 @@ function initNameScreen() {
 
   function submitName() {
     const val = input.value.trim();
+    if (!val) {
+      alert("Please enter your name!");
+      return;
+    }
+
+    // --- GERBANG WAKTU (AKTIF HANYA PADA TANGGAL 26) ---
+    const now = new Date();
+    // Bulan 5 itu Juni (karena hitungan JS mulai dari 0)
+    if (now.getMonth() === 5 && now.getDate() === 26) {
+      showToast("✨ Ditunggu ya, sampai tanggal 27 nanti!");
+      return; // Stop di sini, tombol tidak bisa lanjut
+    }
+    // ---------------------------------------------------
+
     State.visitorName = val || "Special Guest";
     saveState(); 
     showGreeting();

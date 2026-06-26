@@ -2183,3 +2183,16 @@ html, body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Notif Estetik Kanan Atas */
+#toast-notif {
+  position: fixed; top: 20px; right: 20px;
+  background: #E8A5A5; color: white;
+  padding: 15px 25px; border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 9999; font-family: 'DM Sans', sans-serif;
+  font-weight: 600; opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+#toast-notif.show { opacity: 1; transform: translateX(0); }
