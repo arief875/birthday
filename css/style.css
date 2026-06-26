@@ -814,48 +814,94 @@ h2 {
   padding-bottom: 12px !important;
 }
 
-/* ─── STICKY NOTE KERTAS UCAPAN ─── */
+/* ────────────────────────────────────────────────────────────
+   [PERBAIKAN FINAL] KERTAS SURAT DIPERKECIL & TIDAK SEJAJAR COUNTDOWN
+   ──────────────────────────────────────────────────────────── */
 #section-dashboard-birthday .dash-sticky-note {
-  background: #FFFDF9 !important;
-  border-left: 4px solid var(--blush) !important;
-  padding: 1.6rem 1.5rem 1.4rem 1.5rem !important;
-  border-radius: 14px !important;
-  box-shadow: 0 6px 20px rgba(180,130,150,0.04) !important;
+  background: #FEF9F2 !important;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 27px,
+    rgba(212, 180, 190, 0.22) 27px,
+    rgba(212, 180, 190, 0.22) 28px
+  ) !important;
+  border-left: 5px solid var(--blush) !important;
+  padding: 2.2rem 1.5rem 1.5rem 1.5rem !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px rgba(180,130,150,0.07) !important;
   text-align: center !important;
   position: relative !important;
   box-sizing: border-box !important;
-}
-@media (min-width: 720px) {
-  #section-dashboard-birthday .dash-sticky-note { text-align: left !important; }
+  line-height: 28px !important;
+
+  /* 📐 TRIK PERKECIL KERTAS: Mengunci lebar maksimal agar lebih ramping dari countdown */
+  width: 100% !important;
+  max-width: 330px !important; /* Diperkecil dari lebar countdown agar tidak sejajar */
+  margin: 0 auto !important; /* Di HP otomatis di tengah */
 }
 
+/* Jika dibuka di Laptop/Tablet, kertas surat otomatis mengecil dan geser manis */
+@media (min-width: 720px) {
+  #section-dashboard-birthday .dash-sticky-note { 
+    text-align: left !important;
+    align-self: flex-start !important; /* Mengunci posisi atas-bawah secara dinamis */
+    margin-left: 1rem !important;      /* Digeser sedikit agar tidak sejajar kaku dengan countdown atas */
+  }
+}
+
+/* Mengunci pin merah menggantung rapi di tengah atas kertas surat */
 #section-dashboard-birthday .note-pin {
   position: absolute !important;
-  top: -11px !important;
+  top: -14px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  font-size: 1.2rem !important;
+  font-size: 1.4rem !important;
+  margin: 0 !important;
+  z-index: 5 !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)) !important;
 }
 
+/* Judul teks "Untuk kamu" */
 #section-dashboard-birthday .note-title {
-  font-family: var(--font-display), serif !important;
-  font-size: 1.08rem !important;
-  color: var(--text-dark) !important;
-  margin: 0 0 0.4rem 0 !important;
+  font-family: var(--font-hand), 'Caveat', cursive !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  color: var(--mauve) !important;
+  margin: 0 0 0.5rem 0 !important;
+  line-height: 1.2 !important;
 }
 
+@media (min-width: 720px) {
+  #section-dashboard-birthday .note-title { 
+    text-align: left !important; 
+  }
+}
+
+/* Isi ucapan doa bertubi-tubi */
 #section-dashboard-birthday .note-body {
-  font-size: 0.88rem !important;
-  line-height: 1.55 !important;
-  color: var(--text-mid) !important;
+  font-family: var(--font-hand), 'Caveat', cursive !important;
+  font-size: 1.2rem !important;
+  color: var(--text-dark) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 28px !important;
 }
 
+@media (min-width: 720px) {
+  #section-dashboard-birthday .note-body { 
+    text-align: left !important; 
+  }
+}
+
+/* Ornamen amplop mini transparan di pojok bawah */
 #section-dashboard-birthday .note-envelope-deco {
   position: absolute !important;
-  bottom: 8px !important;
+  bottom: 6px !important;
   right: 12px !important;
   font-size: 1.1rem !important;
-  opacity: 0.12 !important;
+  opacity: 0.15 !important;
+  z-index: 1 !important;
 }
 
 /* ─── BOX QUOTES CONTAINER BAWAH ─── */
@@ -878,6 +924,42 @@ h2 {
   line-height: 1.4 !important;
   text-align: center !important;
   margin: 0 !important;
+}
+
+/* ============================================================
+   🎯 PAPAN PENGUMUMAN KAPSUL DUSTY ROSE (100% SAMA SEPERTI CONTOH FOTO)
+   ============================================================ */
+
+/* Kotak mika gede pembungkus luar tetap pink transparan kaca pastel soft */
+#section-dashboard-birthday .premium-countdown-card-pinky.countdown-now {
+  background: rgba(255, 224, 233, 0.45) !important; 
+  border: 1px solid rgba(242, 196, 196, 0.6) !important;
+  box-shadow: 0 10px 30px rgba(242, 196, 196, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.4) !important;
+  animation: pulseGlow 2s infinite alternate ease-in-out !important;
+}
+
+/* 🔥 KAPSUL DUSTY ROSE: Plek ketiplek menyerupai gambar image_f3978f.png */
+.dash-day-h-announcement {
+  background-color: #E8B9B9 !important; /* Warna dasar pink dusty rose pastel yang pas sesuai gambar */
+  border: 1px solid #C08E8E !important; /* Garis pinggir tipis berwarna rose agak tegas */
+  color: #FFFFFF !important; /* Teks murni putih bersih tanpa shadow */
+  
+  font-family: var(--font-body), sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important; /* Ketebalan teks putih tegas tapi pas */
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  
+  /* 💊 BENTUK KAPSUL BULAT: Menyamakan lengkungan penuh di sisi kanan dan kiri */
+  padding: 12px 24px !important; 
+  border-radius: 50px !important; /* Membuat ujung melengkung bulat sempurna (pill-shaped) */
+  
+  letter-spacing: -0.2px !important;
+  line-height: 1.3 !important;
+  text-shadow: none !important; /* Bersih tanpa bayangan hitam */
+  box-shadow: none !important;
 }
 
 /* ── LIGHTBOX ─────────────────────────────────────────────── */

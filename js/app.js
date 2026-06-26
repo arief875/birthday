@@ -76,62 +76,69 @@ function goToAgeScreen() {
 }
 
 /* ============================================================
-   LIVE COUNTDOWN SAKTI: MENGGERAKKAN INTRO & DASHBOARD BARU COPO
+   ⏳ LIVE COUNTDOWN SAKTI - EDISI KOTAK WAKTU BERUBAH JADI TEKS PAS HARI H
    ============================================================ */
 function startIntroCountdown() {
-  const countdownEl = $("intro-countdown");
+  const countdownEl = document.getElementById("intro-countdown");
   
-  // Ambil elemen kotak dashboard baru biar bisa ditembak angkanya
+  // Ambil elemen kotak mika pink dan pembungkus angka di dalamnya
+  const numbersWrapper = document.getElementById("countdown-numbers-wrapper");
   const dDays = document.getElementById("dash-days");
   const dHours = document.getElementById("dash-hours");
   const dMins = document.getElementById("dash-minutes");
   const dSecs = document.getElementById("dash-seconds");
 
-  // Set target waktu sakral: 27 Juni pukul 00:00:00
-  // Catatan: Sesuai waktu sistem runtime saat ini tahun 2026
+  // Set target waktu sakral: 27 Juni pukul 00:00:00 tahun 2026
   const targetDate = new Date("June 27, 2026 00:00:00").getTime();
 
   const timerInterval = setInterval(() => {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
-    // JIKA WAKTU SUDAH LEWAT / HARI H
+    // 🚨 JIKA WAKTU SUDAH LEWAT / MENYENTUH HARI H
     if (distance < 0) {
       clearInterval(timerInterval);
+      
+      // 1. Ubah teks di section nama input paling depan
       if (countdownEl) {
         countdownEl.textContent = "The special day is finally here!";
         countdownEl.classList.add("countdown-now");
       }
       
-      // Paksa dashboard nulis angka 00 semua
-      if (dDays) dDays.textContent = "00";
-      if (dHours) dHours.textContent = "00";
-      if (dMins) dMins.textContent = "00";
-      if (dSecs) dSecs.textContent = "00";
+      // 🔥 2. KUNCI UTAMA: Hancurkan kotak angka, ganti jadi teks panjang estetik di mika!
+      if (numbersWrapper) {
+        numbersWrapper.innerHTML = `<div style="color: #3D2C35; font-size: 1.3rem; font-weight: bold; text-align: center; width: 100%; padding: 10px 0; letter-spacing: 0.5px; animation: pulseGlow 2s infinite alternate ease-in-out;">The special day is finally here!</div>`;
+      }
+      
+      // 3. Memicu kelas mika berubah warna jadi pink pekat romantis bawaan CSS
+      const cardPinky = document.querySelector(".premium-countdown-card-pinky");
+      if (cardPinky) {
+        cardPinky.classList.add("countdown-now");
+      }
       return;
     }
 
-    // HITUNG KONVERSI WAKTU LIVE
+    // ⏱️ LOGIKA HITUNG KONVERSI WAKTU LIVE (SELAMA COUNTDOWN JALAN)
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // 1. Tembak data ke text timer intro (di atas kolom nama depan)
+    // Kirim data waktu ke text intro depan tempat isi nama
     if (countdownEl) {
       countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until the big day`;
     }
 
-    // 2. TEMBOK DATA DETAK LIVE KE KOTAK DASHBOARD CANVA BARU LU (PLEK KETIPLEK)
+    // Kirim data waktu live ke kotak dashboard mika pink (selama hitung mundur berjalan)
     if (dDays)  dDays.textContent  = String(days).padStart(2, '0');
     if (dHours) dHours.textContent = String(hours).padStart(2, '0');
     if (dMins)  dMins.textContent  = String(minutes).padStart(2, '0');
     if (dSecs)  dSecs.textContent  = String(seconds).padStart(2, '0');
 
-  }, 1000); // Berdetak maju-mundur live setiap 1 detik!
+  }, 1000);
 }
 
-// Pastikan fungsi countdown otomatis dijalankan begitu halaman dimuat
+// Mengunci penjalaran fungsi countdown saat aplikasi dimuat pertama kali
 document.addEventListener("DOMContentLoaded", () => {
   startIntroCountdown();
 });
@@ -403,15 +410,12 @@ function triggerPetalCurtain() {
 }
 
 /* ============================================================
-   TRANSISI STERIL KATA BOS: KUE 3 TINGKAT -> LILIN PADAM -> WEB UTAMA
+   TRANSISI STERIL: GELAP -> MUSIK NYALA -> BARU LILIN NYALA
    ============================================================ */
 function triggerCakeEnchantment() {
   const balloonHint = document.querySelector(".tap-hint");
-  if (balloonHint) {
-    balloonHint.style.display = "none";
-  }
+  if (balloonHint) balloonHint.style.display = "none";
 
-  // Pindah kamar ke screen kue kustom
   showScreen("screen-cake-sinematic");
 
   const celScreen = $("screen-cake-sinematic");
@@ -424,30 +428,43 @@ function triggerCakeEnchantment() {
   // 1. Efek kamar menggelap syahdu
   celScreen.classList.add("room-darken");
 
-  // 2. Munculkan kue secara anggun
+  // 🔥 KUNCI SAKTI: Musik nyala PAS LAYAR GELAP (Sebelum lilin nyala)
+  try {
+    const audioEl = document.getElementById("bg-audio");
+    const btnMusic = document.getElementById("music-btn");
+    
+    if (audioEl) {
+      audioEl.src = "music/birthday.mp3"; 
+      audioEl.load();
+      audioEl.volume = 0.5;
+      audioEl.loop = true;
+      
+      audioEl.play()
+        .then(() => {
+          State.musicPlaying = true;
+          if (btnMusic) btnMusic.classList.add("playing");
+        })
+        .catch(e => console.log("Autoplay ditahan browser:", e));
+    }
+  } catch (err) {
+    console.log("Gagal memicu lagu:", err);
+  }
+
+  // 2. Munculkan kue
   cakeWrap.style.display = "block";
   setTimeout(() => cakeWrap.classList.add("show"), 50);
 
-  // 3. Peri cahaya meluncur memutar (4 detik)
+  // 3. Peri cahaya memutar (4 detik)
   const spark = create("div", "spark-light");
   celScreen.appendChild(spark);
 
-  // 4. JEDA 4 DETIK: Cahaya menyala serentak
+  // 4. JEDA 4 DETIK: Baru lilin nyala
   setTimeout(() => {
     if (spark) spark.remove();
-
     flames.forEach(flame => flame.classList.add("ignited"));
 
     celScreen.classList.remove("room-darken");
     celScreen.classList.add("cake-glow-active");
-
-    const audioEl = document.getElementById("bg-audio");
-    if (audioEl) {
-      audioEl.play().catch(e => console.log("Autoplay ditahan browser:", e));
-      State.musicPlaying = true;
-      const btnMusic = document.getElementById("music-btn");
-      if (btnMusic) btnMusic.classList.add("playing");
-    }
 
     // 5. TIMER 15 DETIK OTOMATIS
     let countdown = 15;
@@ -459,23 +476,19 @@ function triggerCakeEnchantment() {
         textHint.textContent = `Make a wish, blowing out in ${countdown}s`;
       } else {
         clearInterval(counterInterval);
-        
-        // 🚨 DI SINI SUDAH DIHAPUS TOTAL TEKS "BLOWING OUT"-NYA BOS!
         flames.forEach(flame => flame.classList.remove("ignited"));
         celScreen.classList.remove("cake-glow-active");
 
-        // Jeda romantis 1 detik, langsung meluncur pakai efek transisi bawaan template lu!
         setTimeout(() => {
           fadeOutScreen("screen-cake-sinematic", triggerPetalCurtain);
         }, 1000);
       }
     }, 1000);
-
   }, 4000);
 }
 
 /* ============================================================
-   REVEAL MAIN WEBSITE
+   REVEAL MAIN WEBSITE -> OTOMATIS BERHENTIIN LAGU ULANG TAHUN
    ============================================================ */
 function revealMainWebsite() {
   document.querySelectorAll(".screen").forEach(s => {
@@ -498,6 +511,25 @@ function revealMainWebsite() {
       el.textContent = State.visitorAge;
     });
 
+    // 🔥 KUNCI SAKTI 2: Matikan musik kue secara paksa saat masuk ke web asli!
+    try {
+      const audioEl = document.getElementById("bg-audio");
+      const btnMusic = document.getElementById("music-btn");
+      
+      if (audioEl) {
+        audioEl.pause(); // Musik berhenti total!
+        State.musicPlaying = false;
+        
+        if (btnMusic) {
+          btnMusic.classList.remove("playing");
+          btnMusic.innerHTML = "🎵"; // Kembalikan ikon tombol ke mode diam
+        }
+      }
+    } catch (err) {
+      console.log("Gagal mematikan lagu saat masuk web asli:", err);
+    }
+
+    // Jalankan semua fitur utama website
     initHero();
     initGallery();
     initLetter();
@@ -505,7 +537,7 @@ function revealMainWebsite() {
     initGift();
     initEnding();
     initScrollReveal();
-    initMusic();
+    initMusic(); // Fungsi ini nanti siap dipakai kalau user klik manual tombol di kanan bawah
     $("music-btn").classList.add("visible");
   }, 300);
 }
